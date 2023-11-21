@@ -13,7 +13,7 @@ int _printf(const char *format, ...)
 	va_start(list, format);
 	if (format == NULL)
 		return (-1);
-	while (format[i] != '\0')
+	while (format[i])
 	{
 		if (format[i] == '%')
 		{
@@ -30,8 +30,11 @@ int _printf(const char *format, ...)
 				case '%':
 						count += write(1, "%", 1);
 						break;
-				case 'd':
-				case 'i':
+				case 'i': case 'd':
+						{
+						}
+				case '\0':
+						return (-1);
 				default:
 						count += write(1, &format[--1], 1);
 			}
