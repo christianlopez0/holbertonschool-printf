@@ -1,50 +1,50 @@
 #include "main.h"
 #include <stdarg.h>
 /**
- *_printf - funcion parecida a printf
- *
+ *_printf - funcion that is a copy of printf
+ *@format: the string to print
+ *Return: Return the number of characters printed
  */
-
 int _printf(const char *format, ...)
 {
+	int count = 0, i = 0;
 	va_list list;
-	va_start (list, format);
-	while(*format != '\0')
-	{
-		char c;
-		const char *str;
-		int count = 0;
 
-		if (*format == '%' && *(format + 1 != '\0'))
+	va_start(list, format);
+	while (format[i] != '\0')
+	{
+		if (format == NULL)
 		{
-			format++; //* pasa al siguiente char*/
-			switch (*format)
+			return (-1);
+		}
+		if (format[i] == '%')
+		{
+			while (format[++i] == ' ')
+				;
+			switch (format[i])
 			{
 				case 'c':
-					{
-
-					}
+						count += print_char(va_arg(list, int));
+						break;
 				case 's':
-					{
-					}
+						count += print_string(va_arg(list, char *));
+						break;
 				case '%':
-					{
-					}
+						count += write(1, "%", 1);
+						break;
 				case 'd':
 				case 'i':
-					{
-					}
 				default:
-					putchar('%');
-					putchar(*format);
-					break;
+					count += write(1, "%", 1);
+					count += write(1, &format[i], 1);
 			}
 		}
 		else
 		{
-			putchar(*format);
+			count += write(1, &format[i], 1);
 		}
-		format++;
+		i++;
 	}
 	va_end(list);
+	return (count);
 }
