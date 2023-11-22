@@ -31,13 +31,12 @@ int _printf(const char *format, ...)
 						count += write(1, "%", 1);
 						break;
 				case 'i': case 'd':
-						{
-						}
+						{}
 				case '\0':
 						va_end(list);
 						return (count);
 				default:
-						count += write(1, &format[i], 1);
+						count += write(1, &format[--i], 1);
 			}
 		}
 		else
