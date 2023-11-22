@@ -36,7 +36,7 @@ int _printf(const char *format, ...)
 						va_end(list);
 						return (count);
 				default:
-						count += write(1, &format[--i], 1);
+						count += write(1, &format[i], 1);
 			}
 		}
 		else
