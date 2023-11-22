@@ -28,6 +28,6 @@ int print_string(char *str)
 		return (6);
 	}
 	lenght = strlen(str);
-	write(1, str, lenght);
+	write(1, str, strlen(str));
 	return (lenght);
 }
