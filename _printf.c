@@ -37,6 +37,7 @@ int _printf(const char *format, ...)
 						return (count);
 				default:
 						count += write(1, &format[--i], 1);
+						i++;
 			}
 		}
 		else
