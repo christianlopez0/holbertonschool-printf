@@ -1,7 +1,13 @@
 #ifndef printf_H
 #define printf_H
-#include <stdarg.h>
+#include <stddef.h>
 #include <unistd.h>
+typedef struct specifiers
+{
+char *letter;
+int (*s)(char str);
+} speci;
+
 /**
  *_printf - funcion that is a copy of printf
  *@format: the string to print
