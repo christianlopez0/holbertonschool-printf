@@ -1,7 +1,5 @@
 #include "main.h"
 #include <stdarg.h>
-#include <stddef.h>
-#include <unistd.h>
 /**
  *_printf - funcion that is a copy of printf
  *@format: the string to print
@@ -39,15 +37,12 @@ int _printf(const char *format, ...)
 						return (-1);
 				default:
 						count += write(1, &format[--i], 1);
-						count += write(1, &format[i + 1], 1);
-						i++;
+						count += write(1, &format[i++], 1);
 			}
-		}
-		else
+		} else
 		{
 			count += write(1, &format[i], 1);
-		}
-		i++;
+		} i++;
 	}
 	va_end(list);
 	return (count);
