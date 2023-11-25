@@ -1,13 +1,16 @@
 #ifndef printf_H
 #define printf_H
-#include <stddef.h>
-#include <unistd.h>
+#include <stdarg.h>
 typedef struct specifiers
 {
 char *letter;
-int (*s)(char str);
+int (*s)(va_list);
 } speci;
 
+/**
+ * printF_funcions - is a pointer to the diferent funcions
+*/
+int (*printf_funcions(char c))(va_list);
 /**
  *_printf - funcion that is a copy of printf
  *@format: the string to print
@@ -19,11 +22,11 @@ int _printf(const char *format, ...);
  *@c: the character to print
  *Return: Return 1
  */
-int print_char(char c);
+int print_char(va_list c);
 /**
  *print_string - funcion to print a string
  *@str: string to print
  *Return: Return the lenght of the string
  */
-int print_string(char *str);
+int print_string(va_list s);
 #endif
