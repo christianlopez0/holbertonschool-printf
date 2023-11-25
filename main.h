@@ -29,4 +29,10 @@ int print_char(va_list c);
  *Return: Return the lenght of the string
  */
 int print_string(va_list s);
+/**
+ *print_int - funcion to print a integer
+ *@i - integer to print
+ *Return: Return the lenght of the integer
+ */
+int print_int(va_list d,i);
 #endif

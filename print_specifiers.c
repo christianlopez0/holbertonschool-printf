@@ -56,3 +56,38 @@ int print_string(va_list s)
 	write(1, str, lenght);
 	return (lenght);
 }
+
+/**
+ * print_int - print a integer
+ * @i - integer to print
+ * Return - return legth of integer 
+ */
+
+int print_int(va_list i)
+{
+    int num = va_arg(i, int);
+    int temp = num;
+    int length = 0;
+
+    if (num < 0)
+    {
+        write(1, "-", 1);
+        temp = -num;
+        length++;
+    }
+    int divisor = 1;
+    while (temp / divisor > 9)
+    {
+        divisor *= 10;
+    }
+    while (divisor != 0)
+    {
+        char digit = '0' + temp / divisor;
+        write(1, &digit, 1);
+        temp %= divisor;
+        divisor /= 10;
+        length++;
+    }
+
+    return length;
+}
