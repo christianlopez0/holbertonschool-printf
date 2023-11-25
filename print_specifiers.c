@@ -68,6 +68,7 @@ int print_int(va_list i)
     int num = va_arg(i, int);
     int temp = num;
     int length = 0;
+	int divisor = 10;
 
     if (num < 0)
     {
@@ -75,11 +76,9 @@ int print_int(va_list i)
         temp = -num;
         length++;
     }
-    int divisor = 1;
+     divisor = 1;
     while (temp / divisor > 9)
-    {
-        divisor *= 10;
-    }
+
     while (divisor != 0)
     {
         char digit = '0' + temp / divisor;

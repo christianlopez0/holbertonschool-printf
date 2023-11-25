@@ -34,5 +34,5 @@ int print_string(va_list s);
  *@i - integer to print
  *Return: Return the lenght of the integer
  */
-int print_int(va_list d,i);
+int print_int(va_list d);
 #endif
