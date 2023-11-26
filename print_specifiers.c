@@ -70,28 +70,32 @@ int print_string(va_list s)
  * Return: return legth of integer
  */
 
-int print_unsigned(va_list args)
+int print_unsigned_int(va_list args)
 {
     unsigned int num = va_arg(args, unsigned int);
 
     char buffer[20];
     int length = 0;
+	 int i = 0;
+    int j = length - 1;
 
     do {
         buffer[length++] = '0' + num % 10;
         num /= 10;
     } while (num != 0);
 
-    for (int i = 0, j = length - 1; i < j; ++i, --j) {
+
+    while (i < j) {
         char temp = buffer[i];
-        buffer[i] = buffer[j];
-        buffer[j] = temp;
+        buffer[i++] = buffer[j];
+        buffer[j--] = temp;
     }
 
     write(1, buffer, length);
 
     return length;
 }
+
 
 /**
  * print_int - print a integer
@@ -105,6 +109,8 @@ int print_int(va_list args)
 
     char buffer[20];
     int length = 0;
+	int i = (buffer[0] == '-') ? 1 : 0;
+    int j = length - 1;
 
     if (num < 0) {
         write(1, "-", 1);
@@ -117,12 +123,12 @@ int print_int(va_list args)
         num /= 10;
     } while (num != 0);
 
-    for (int i = (buffer[0] == '-') ? 1 : 0, j = length - 1; i < j; ++i, --j) {
-        char temp = buffer[i];
-        buffer[i] = buffer[j];
-        buffer[j] = temp;
-    }
 
+    while (i < j) {
+        char temp = buffer[i];
+        buffer[i++] = buffer[j];
+        buffer[j--] = temp;
+    }
     write(1, buffer, length);
 
     return length;
