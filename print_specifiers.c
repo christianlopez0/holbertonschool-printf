@@ -14,7 +14,7 @@ int (*printf_funcions(char s))(va_list)
 		{"s", print_string},
 		{"c", print_char},
 		{"d", print_int},
-		{"i", print_unsigned},
+		{"i", print_int},
 		{NULL, NULL}
 	};
 	int i = 0;
