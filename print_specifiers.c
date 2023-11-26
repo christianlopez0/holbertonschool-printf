@@ -109,7 +109,7 @@ int print_int(va_list args)
 
     char buffer[20];
     int length = 0;
-	int i = (buffer[0] == '-') ? 1 : 0;
+	int d = (buffer[0] == '-') ? 1 : 0;
     int j = length - 1;
 
     if (num < 0) {
@@ -124,9 +124,9 @@ int print_int(va_list args)
     } while (num != 0);
 
 
-    while (i < j) {
-        char temp = buffer[i];
-        buffer[i++] = buffer[j];
+    while (d < j) {
+        char temp = buffer[d];
+        buffer[d++] = buffer[j];
         buffer[j--] = temp;
     }
     write(1, buffer, length);
