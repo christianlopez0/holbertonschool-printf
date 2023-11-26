@@ -3,25 +3,31 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdarg.h>
-
+/**
+ *printf_funcions -looks for the funcion to use
+ *@s: is the character to know what funcion use
+ *Return: Return the funcion to use or NULL
+ */
 int (*printf_funcions(char s))(va_list)
 {
-    speci get_spec[] = {
-        {"s", print_string},
-        {"c", print_char},
-        {NULL, NULL}
-    };
-    int i = 0;
+	speci get_spec[] = {
+		{"s", print_string},
+		{"c", print_char},
+		{"d", print_int},
+		{"i", print_int},
+		{NULL, NULL}
+	};
+	int i = 0;
 
-    while (i < 2)
-    {
-        if (strcmp(&s, get_spec[i].letter) == 0)
-        {
-            return (get_spec[i].s);
-        }
-        i++;
-    }
-    return (NULL);
+	while (i < 4)
+	{
+		if (strcmp(&s, get_spec[i].letter) == 0)
+		{
+			return (get_spec[i].s);
+		}
+		i++;
+	}
+	return (NULL);
 }
 /**
  *print_char - print a character
@@ -32,13 +38,14 @@ int (*printf_funcions(char s))(va_list)
 int print_char(va_list c)
 {
 	char b = (char)(va_arg(c, int));
+
 	write(1, &b, 1);
 	return (1);
 }
 
 /**
  *print_string - print a string
- *@str: the string that is going to print
+ *@s: the string that is going to print
  *Return: Return the lenght of the string
  */
 
@@ -59,34 +66,36 @@ int print_string(va_list s)
 
 /**
  * print_int - print a integer
- * @i - integer to print
- * Return - return legth of integer 
+ * @i: integer to print
+ * Return: return legth of integer
  */
-
 int print_int(va_list i)
 {
-    int num = va_arg(i, int);
-    int temp = num;
-    int length = 0;
-	int divisor = 10;
+	int num = va_arg(i, int);
+	int temp = num;
+	int length = 0;
+	int divisor = 1;
 
-    if (num < 0)
-    {
-        write(1, "-", 1);
-        temp = -num;
-        length++;
-    }
-     divisor = 1;
-    while (temp / divisor > 9)
+	if (num == 0)
+	{
+		length += write(1, "0", 1);
+		return (1);
+	}
+	if (num < 0)
+	{
+		length += write(1, "-", 1);
+		temp = -num;
+	}
+	while (temp / divisor >= 10)
+	{
+		divisor *= 10;
+	}
+	while (divisor != 0)
+	{
+		char digit = '0' + temp / divisor;
 
-    while (divisor != 0)
-    {
-        char digit = '0' + temp / divisor;
-        write(1, &digit, 1);
-        temp %= divisor;
-        divisor /= 10;
-        length++;
-    }
-
-    return length;
+		length += write(1, &digit, 1);
+		divisor /= 10;
+	}
+	return (length);
 }
