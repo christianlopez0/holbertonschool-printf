@@ -15,7 +15,7 @@ int _printf(const char *format, ...)
     }
     while (format[i] != '\0')
     {
-        while (format[i] != '%' && format[1 + 1] != '\0')
+        while (format[i] != '%' && format[i + 1] != '\0')
         {
             count += write(1, &format[i++], 1);
         }
@@ -38,8 +38,8 @@ int _printf(const char *format, ...)
                 {
                     count += (printf_funcions(format[i]))(list);
                 }
-                i++;
             }
+			i++;
         }
         if (format[i] != '%' && format[i] != '\0')
         {
