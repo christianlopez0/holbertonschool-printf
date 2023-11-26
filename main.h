@@ -31,8 +31,14 @@ int print_char(va_list c);
 int print_string(va_list s);
 /**
  *print_int - funcion to print a integer
- *@i - integer to print
+ *@d: integer to print
  *Return: Return the lenght of the integer
  */
 int print_int(va_list d);
+/**
+ * print_int - print a unsigned integer
+ * @i: integer to print
+ * Return: return legth of integer
+ */
+int print_unsigned(va_list i);
 #endif

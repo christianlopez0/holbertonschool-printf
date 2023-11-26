@@ -14,7 +14,7 @@ int (*printf_funcions(char s))(va_list)
 		{"s", print_string},
 		{"c", print_char},
 		{"d", print_int},
-		{"i", print_int},
+		{"i", print_unsigned},
 		{NULL, NULL}
 	};
 	int i = 0;
@@ -65,37 +65,66 @@ int print_string(va_list s)
 }
 
 /**
- * print_int - print a integer
+ * print_unsigned - print a unsigned integer
  * @i: integer to print
  * Return: return legth of integer
  */
-int print_int(va_list i)
+
+int print_unsigned(va_list args)
 {
-	int num = va_arg(i, int);
-	int temp = num;
-	int length = 0;
-	int divisor = 1;
+    unsigned int num = va_arg(args, unsigned int);
 
-	if (num == 0)
-	{
-		length += write(1, "0", 1);
-		return (1);
-	}
-	if (num < 0)
-	{
-		length += write(1, "-", 1);
-		temp = -num;
-	}
-	while (temp / divisor >= 10)
-	{
-		divisor *= 10;
-	}
-	while (divisor != 0)
-	{
-		char digit = '0' + temp / divisor;
+    char buffer[20];
+    int length = 0;
 
-		length += write(1, &digit, 1);
-		divisor /= 10;
-	}
-	return (length);
+    do {
+        buffer[length++] = '0' + num % 10;
+        num /= 10;
+    } while (num != 0);
+
+    for (int i = 0, j = length - 1; i < j; ++i, --j) {
+        char temp = buffer[i];
+        buffer[i] = buffer[j];
+        buffer[j] = temp;
+    }
+
+    write(1, buffer, length);
+
+    return length;
 }
+
+/**
+ * print_int - print a integer
+ * @d: integer to print
+ * Return: return legth of integer
+ */
+
+int print_int(va_list args)
+{
+    int num = va_arg(args, int);
+
+    char buffer[20];
+    int length = 0;
+
+    if (num < 0) {
+        write(1, "-", 1);
+        num = -num;
+        ++length;
+    }
+
+    do {
+        buffer[length++] = '0' + num % 10;
+        num /= 10;
+    } while (num != 0);
+
+    for (int i = (buffer[0] == '-') ? 1 : 0, j = length - 1; i < j; ++i, --j) {
+        char temp = buffer[i];
+        buffer[i] = buffer[j];
+        buffer[j] = temp;
+    }
+
+    write(1, buffer, length);
+
+    return length;
+}
+
