@@ -69,15 +69,13 @@ int print_string(va_list s)
  * @d: integer to print
  * Return: return legth of integer
  */
-
 int print_int(va_list args)
 {
     int num = va_arg(args, int);
 
-    char buffer[20];
+    char buffer[8];
     int length = 0;
-    int d = 0;
-	int j = 0;
+    int d, j;
 
     if (num < 0) {
         write(1, "-", 1);
