@@ -73,10 +73,10 @@ int print_int(va_list args)
 {
 	int num = va_arg(args, int);
 
-    char buffer[20];
-    int length = 0;
-    int d, j;
-	int digit;
+	char buffer[20];
+	int length = 0;
+	int d, j;
+	int digit, negative = 0;
 
 	if (num < 0)
 	{
@@ -92,10 +92,11 @@ int print_int(va_list args)
 			digit *= -1;
 		}
 		buffer[length++] = '0' + digit;
-		num/=10;
-    } while (num != 0);
-	 d = (buffer[0] == '-') ? 1 : 0;	
-    j = length - 1;
+		num /= 10;
+	}while (num != 0);
+	
+	d = (buffer[0] == '-') ? 1 : 0;
+	j = length - 1;
 
 	while (d < j)
 	{
@@ -105,7 +106,7 @@ int print_int(va_list args)
 		buffer[j--] = temp;
 	}
 
-    write(1, buffer, length);
-
-    return length;
+	write(1, buffer, length);
+	length += negative;
+	return (length);
 }
