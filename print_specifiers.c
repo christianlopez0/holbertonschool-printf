@@ -75,7 +75,7 @@ int print_unsigned_int(va_list args)
     unsigned int num = va_arg(args, unsigned int);
 
     char buffer[10];
-    int length = -1;
+    int length = 0;
 	 int i = 0;
 	int j = length - 1;
 
@@ -108,7 +108,7 @@ int print_int(va_list args)
     int num = va_arg(args, int);
 
     char buffer[10];
-    int length = -1;
+    int length = 0;
 	int d = (buffer[0] == '-') ? 1 : 0;
     int j = length - 1;
 
