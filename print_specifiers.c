@@ -74,7 +74,7 @@ int print_int(va_list args)
 {
     int num = va_arg(args, int);
 
-    char buffer[8];
+    char buffer[20];
     int length = 0;
     int d, j;
 
