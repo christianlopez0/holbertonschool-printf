@@ -26,8 +26,11 @@ All files are written in C and follows the Betty coding style.
 ## Function prototypes
 
 int _printf(const char *format, ...);
+
 int print_char(va_list args);
+
 int print_string(va_list args);
+
 int print_int(va_list args);
 
 The **conversion specifier:**
