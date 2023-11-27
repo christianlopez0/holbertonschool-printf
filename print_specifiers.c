@@ -65,39 +65,6 @@ int print_string(va_list s)
 }
 
 /**
- * print_unsigned - print a unsigned integer
- * @i: integer to print
- * Return: return legth of integer
- */
-
-int print_unsigned_int(va_list args)
-{
-    unsigned int num = va_arg(args, unsigned int);
-
-    char buffer[12];
-    int length = 0;
-	 int i = 0;
-	int j = length - 1;
-
-    do {
-        buffer[length++] = '0' + num % 10;
-        num /= 10;
-    } while (num != 0);
-	 j = length - 1;
-	 i = 0;
-    while (i < j) {
-        char temp = buffer[i];
-        buffer[i++] = buffer[j];
-        buffer[j--] = temp;
-    }
-
-    write(1, buffer, length);
-
-    return length;
-}
-
-
-/**
  * print_int - print a integer
  * @d: integer to print
  * Return: return legth of integer
