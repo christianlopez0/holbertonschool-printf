@@ -77,13 +77,13 @@ int print_unsigned_int(va_list args)
     char buffer[20];
     int length = 0;
 	 int i = 0;
-    int j = length - 1;
+	int j;
 
     do {
         buffer[length++] = '0' + num % 10;
         num /= 10;
     } while (num != 0);
-
+	 j = length - 1;
 
     while (i < j) {
         char temp = buffer[i];
