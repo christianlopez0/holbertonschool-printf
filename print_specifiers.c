@@ -84,7 +84,7 @@ int print_unsigned_int(va_list args)
         num /= 10;
     } while (num != 0);
 	 j = length - 1;
-
+	 i = 0;
     while (i < j) {
         char temp = buffer[i];
         buffer[i++] = buffer[j];
@@ -123,6 +123,7 @@ int print_int(va_list args)
         num /= 10;
     } while (num != 0);
 	j = length - 1;
+	d = (buffer[0] == '-') ? 1 : 0;
 
     while (d < j) {
         char temp = buffer[d];
