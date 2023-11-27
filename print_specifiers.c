@@ -74,7 +74,7 @@ int print_int(va_list args)
 {
     int num = va_arg(args, int);
 
-    char buffer[12];
+    char buffer[8];
     int length = 0;
 	int d = (buffer[0] == '-') ? 1 : 0;
     int j = length - 1;
