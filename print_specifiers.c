@@ -76,6 +76,7 @@ int print_int(va_list args)
     char buffer[20];
     int length = 0;
     int d, j;
+	int digit;
 
     if (num < 0) {
         write(1, "-", 1);
@@ -84,11 +85,15 @@ int print_int(va_list args)
     }
 
     do {
-        buffer[length++] = '0' + num % 10;
-        num /= 10;
+		digit = num % 10;
+		if  (digit < 0)
+		{
+			digit *= -1;
+		}
+		buffer[length++] = '0' + digit;
+		num/=10;
     } while (num != 0);
 	
-	d = (buffer[0] == '-') ? 0 : 0;
     j = length - 1;
 
     while (d < j) {
