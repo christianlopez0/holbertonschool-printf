@@ -74,7 +74,7 @@ int print_unsigned_int(va_list args)
 {
     unsigned int num = va_arg(args, unsigned int);
 
-    char buffer[20];
+    char buffer[10];
     int length = 0;
 	 int i = 0;
 	int j;
@@ -107,7 +107,7 @@ int print_int(va_list args)
 {
     int num = va_arg(args, int);
 
-    char buffer[20];
+    char buffer[10];
     int length = 0;
 	int d = (buffer[0] == '-') ? 1 : 0;
     int j = length - 1;
@@ -122,7 +122,7 @@ int print_int(va_list args)
         buffer[length++] = '0' + num % 10;
         num /= 10;
     } while (num != 0);
-
+	j = length -1;
 
     while (d < j) {
         char temp = buffer[d];
