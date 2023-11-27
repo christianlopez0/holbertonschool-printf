@@ -102,7 +102,7 @@ int print_int(va_list args)
         buffer[j--] = temp;
     }
 
-    write(1, buffer, length);
+    write(buffer, length);
 
     return length;
 }
