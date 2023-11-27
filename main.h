@@ -40,5 +40,5 @@ int print_int(va_list d);
  * @i: integer to print
  * Return: return legth of integer
  */
-int print_unsigned(va_list i);
+int print_unsigned_int(va_list i);
 #endif
