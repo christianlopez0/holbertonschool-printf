@@ -77,7 +77,7 @@ int print_unsigned_int(va_list args)
     char buffer[10];
     int length = 0;
 	 int i = 0;
-	int j;
+	int j = length - 1;
 
     do {
         buffer[length++] = '0' + num % 10;
