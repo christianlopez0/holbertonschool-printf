@@ -87,9 +87,13 @@ int print_int(va_list args)
         buffer[length++] = '0' + num % 10;
         num /= 10;
     } while (num != 0);
+	
+	if (buffer[0] == '-') {
+    d = 1;
+} else {
+    d = 0;
+}
 
-    d = (buffer[0] == '-') ? 1 : 0;
-    j = length - 1;
 
     while (d < j) {
         char temp = buffer[d];
