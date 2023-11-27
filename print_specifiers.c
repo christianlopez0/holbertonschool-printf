@@ -93,7 +93,8 @@ int print_int(va_list args)
 		buffer[length++] = '0' + digit;
 		num/=10;
     } while (num != 0);
-	 d = (buffer[11] == '-') ? 1 : 0;	
+	 d = (buffer[11] == '-') ? 1 : 0;
+		buffer[length]='\0';
     j = length - 1;
 
     while (d < j) {
