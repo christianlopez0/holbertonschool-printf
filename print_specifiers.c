@@ -76,7 +76,8 @@ int print_int(va_list args)
 
     char buffer[20];
     int length = 0;
-    int d, j;
+    int d = 0;
+	int j = 0;
 
     if (num < 0) {
         write(1, "-", 1);
